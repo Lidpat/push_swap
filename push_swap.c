@@ -6,10 +6,14 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/10/31 22:13:20 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/11/12 23:23:30 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+int	*read_parameters (int argc, char *argv)
+{
+
+}
 int	param_control(char *argv[])
 {
 	
