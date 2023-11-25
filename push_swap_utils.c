@@ -1,24 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 21:34:32 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/11/25 17:45:35 by lpalacio         ###   ########.fr       */
+/*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
+/*   Updated: 2023/11/25 18:11:13 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
-
-
-
-
-
-
-#endif
-
-
+//free malloc 2D   //variadric
