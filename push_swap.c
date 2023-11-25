@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/11/25 18:20:09 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/11/25 20:12:30 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,50 +22,51 @@ list	load_stack (char *argv)
 }
 */
 
-int	is_valid_arg(char *argv)
+int	is_valid_arg(char *args)
 {
 	int	j;
-	char	*args;
+	int	k;
 
 	j = 0;
-	args = ft_split(argv, ' ');
-	if (args == NULL);
-		return (-1);
+	k = 0;
 	while (args[j])
 	{
-		if(ft_isdigit(args[j] || args[j] == '+' || args[j] == '-')
-			j++;
-		else
+		while(args[j][k])
 		{
-			ft_putendl_fd("Error", 2);
-			free (args); // OJO ¿2D?
-			return (-1);
+			if(ft_isdigit(args[j][k]) || args[j][k] == '+' || args[j][k] == '-')
+				k++;
+			else
+				exit(1);
 		}
 		//num = ft_atoi(args[j]);
 		//new_node = ft_lstnew(num);
-		//ft_lstadd_back(stack_a, new_node); 
-		
+		//ft_lstadd_back(stack_a, new_node);		
+		j++;
 	}	
-	free (args);  //OJO ¿2D?
 	return (0);
 }
 
 int	check_and_load(char *argv[], t_list stack_a)
 {
 	int	i;
+	char	**args;
 	
 	i = 0;
 	while (argv[i])
 	{
-		if(is_valid_arg(argv[i]))
+		args = ft_split(argv[i], ' ');
+		if (args == NULL)
+			return (-1);
+		if(is_valid_arg(args))
 		{
+			free args // OJO 2D
 			//free stack_a
-			return(-1);
+			ft_putendl_fd("Error", 2);
+			exit(1);
 		}
+		free args // OJO 2D
 		i++		
-
 	}
-	
 	return (0);
 }
 
