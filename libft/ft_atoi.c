@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*** PROTECTED str NULL ***/
+/*** PROTECTED for push_swap: Check INT overflow ***/
 
 #include "libft.h"
 
 int	ft_atoi(const char *str)
 {
-	int		num;
-	int		sign;
-	int		i;
+	long			num;
+	int				sign;
+	int				i;
+	unsigned int	uintmax;
 
-	if (str == NULL)
-		return (0);
+	uintmax = (unsigned int) -1;
 	num = 0;
 	sign = 1;
 	i = 0;
@@ -36,5 +36,7 @@ int	ft_atoi(const char *str)
 		num = num * 10 + (sign * (str[i] - '0'));
 		i++;
 	}
-	return (num);
+	if ((2 * sign * num) > (uintmax - sign))
+		error_and_exit(4);
+	return ((int)num);
 }

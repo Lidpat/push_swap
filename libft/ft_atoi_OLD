@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   ft_atoi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/11/28 23:06:41 by lpalacio         ###   ########.fr       */
+/*   Created: 2022/09/24 18:29:55 by lpalacio          #+#    #+#             */
+/*   Updated: 2022/10/30 22:42:35 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//free malloc 2D   //variadric?
-//
+/*** PROTECTED str NULL ***/
 
-void	error_and_exit(int n)
+#include "libft.h"
+
+int	ft_atoi(const char *str)
 {
-	ft_putendl_fd("Error", 2);
-	exit (n);
-}
+	int		num;
+	int		sign;
+	int		i;
+	int		j;
 
-
-/* Check if string has valid length and characters to be an integer */
-int	is_valid_str_for_int(char *str)
-{
-	int i;
-	
-	i = 0;
-	if (str[i] º== '+' || str[i] == '-')
-		i++;
-	while (str[i] == '0')
-		i++;
-	if ((ft_strlen(str) - i) > 10)
+	if (str == NULL)
 		return (0);
-	while (str[i])
+	num = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == 32 || (str[i] <= 13 && str[i] >= 9))
+		i++;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	j = i;
+	while (str[j] >= '0' && str[j] <= '9')
+		j++;
+	while (i < j)
 	{
-		if(!ft_isdigit(str[i]))  //Castear? BORRAR
-			return (0);
+		num = num * 10 + (sign * (str[i] - '0'));
 		i++;
 	}
-	return (1);
+	return (num);
 }
-
-

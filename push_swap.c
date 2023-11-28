@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/11/25 20:12:30 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:06:46 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,33 @@ list	load_stack (char *argv)
 }
 */
 
-int	is_valid_arg(char *args)
+t_list	*validate_arg(char **args, t_list **stack_a)
 {
 	int	j;
 	int	k;
+	t_list	*new_node;
 
 	j = 0;
 	k = 0;
 	while (args[j])
 	{
-		while(args[j][k])
+		while(args[j])
 		{
-			if(ft_isdigit(args[j][k]) || args[j][k] == '+' || args[j][k] == '-')
-				k++;
-			else
-				exit(1);
+			if(!is_valid_str_for_int(args[j]))
+				error_and_exit(1);					
+			k++;
 		}
 		//num = ft_atoi(args[j]);
 		//new_node = ft_lstnew(num);
-		//ft_lstadd_back(stack_a, new_node);		
+		//ft_lstadd_back(stack_a, new_node);
+			
+		k = 0;
 		j++;
 	}	
 	return (0);
 }
 
-int	check_and_load(char *argv[], t_list stack_a)
+int	check_and_load(char *argv[], t_list **stack_a)
 {
 	int	i;
 	char	**args;
@@ -56,14 +58,8 @@ int	check_and_load(char *argv[], t_list stack_a)
 	{
 		args = ft_split(argv[i], ' ');
 		if (args == NULL)
-			return (-1);
-		if(is_valid_arg(args))
-		{
-			free args // OJO 2D
-			//free stack_a
-			ft_putendl_fd("Error", 2);
-			exit(1);
-		}
+			exit (1);
+		validate_arg(args, stack_a);
 		free args // OJO 2D
 		i++		
 	}
@@ -95,11 +91,7 @@ int main (int argc, char *argv[])
 
 	if (argc == 1)
 		 return (-1);
-	if (check_and_load(argv, stack_a))
-	{
-		//FREE stack_a
-		return (-1);
-	}
+	check_and_load(argv, stack_a)  //if fails call exit
 	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
 	//FREE stack_a  stack_b  //free 2D malloc -> variadric
