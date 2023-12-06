@@ -14,6 +14,12 @@
 
 #include "libft.h"
 
+void	error_exit_atoi(int n)
+{
+	ft_putendl_fd("Error", 2);
+	exit (n);
+}
+
 int	ft_atoi(const char *str)
 {
 	long			num;
@@ -37,6 +43,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if ((2 * sign * num) > (uintmax - sign))
-		error_and_exit(4);
+		error_exit_atoi(4);
 	return ((int)num);
 }
