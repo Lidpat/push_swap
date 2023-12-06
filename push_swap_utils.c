@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/11/28 23:06:41 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/06 23:35:26 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@ int	is_valid_str_for_int(char *str)
 	while (str[i] == '0')
 		i++;
 	if ((ft_strlen(str) - i) > 10)
-		return (0);
+		error_and_exit(1);;
 	while (str[i])
 	{
 		if(!ft_isdigit(str[i]))  //Castear? BORRAR
-			return (0);
+			error_and_exit(1);
 		i++;
 	}
 	return (1);
 }
 
-
+void	ft_putnbr_endl(int n)
+{
+	ft_putnbr_fd(n, 1);
+	write(1, "\n", 1);
+	return ;
+}

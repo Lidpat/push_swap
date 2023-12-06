@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/11/28 23:06:46 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/06 23:48:25 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,24 @@ list	load_stack (char *argv)
 t_list	*validate_arg(char **args, t_list **stack_a)
 {
 	int	j;
-	int	k;
+	int	num;
 	t_list	*new_node;
 
 	j = 0;
-	k = 0;
 	while (args[j])
 	{
-		while(args[j])
-		{
-			if(!is_valid_str_for_int(args[j]))
-				error_and_exit(1);					
-			k++;
-		}
-		//num = ft_atoi(args[j]);
-		//new_node = ft_lstnew(num);
-		//ft_lstadd_back(stack_a, new_node);
-			
-		k = 0;
+		is_valid_str_for_int(args[j]);
+		num = ft_atoi(args[j]);
+		new_node = ft_lstnew((void *)&num);
+		ft_lstadd_back(stack_a, new_node);
 		j++;
-	}	
+	}
 	return (0);
 }
 
 int	check_and_load(char *argv[], t_list **stack_a)
 {
-	int	i;
+	int		 i;
 	char	**args;
 	
 	i = 0;
@@ -60,8 +52,8 @@ int	check_and_load(char *argv[], t_list **stack_a)
 		if (args == NULL)
 			exit (1);
 		validate_arg(args, stack_a);
-		free args // OJO 2D
-		i++		
+		//free args // OJO 2D
+		i++;		
 	}
 	return (0);
 }
@@ -87,11 +79,18 @@ int push_swap (list stack_a)
 int main (int argc, char *argv[])
 {
 	t_list	*stack_a;  //OJO Malloc
-	t_list	*stack_b;  //OJO Malloc
+//	t_list	*stack_b;  //OJO Malloc
+	void (*ptr)(int);
 
+	ptr = &ft_putnbr_endl;
+	
 	if (argc == 1)
 		 return (-1);
-	check_and_load(argv, stack_a)  //if fails call exit
+	check_and_load(argv, &stack_a);  //if fails call exit
+
+
+	ft_lstclear(&stack_a, (*ptr));  //print & free stack_a
+
 	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
 	//FREE stack_a  stack_b  //free 2D malloc -> variadric
