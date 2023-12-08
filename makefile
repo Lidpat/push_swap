@@ -6,11 +6,11 @@
 #    By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 19:54:20 by lpalacio          #+#    #+#              #
-#    Updated: 2023/11/15 21:59:31 by lpalacio         ###   ########.fr        #
+#    Updated: 2023/12/08 13:33:56 by lpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= push_swap.c
+SRCS	= push_swap.c push_swap_utils.c
 
 NAME = push_swap
 LIBDIR = libft/

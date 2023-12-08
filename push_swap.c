@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/06 23:48:25 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:33:21 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,16 @@ list	load_stack (char *argv)
 t_list	*validate_arg(char **args, t_list **stack_a)
 {
 	int	j;
-	int	num;
+	int	*num;
 	t_list	*new_node;
 
+	num = malloc(sizeof(int));
 	j = 0;
 	while (args[j])
 	{
 		is_valid_str_for_int(args[j]);
-		num = ft_atoi(args[j]);
-		new_node = ft_lstnew((void *)&num);
+		*num = ft_atoi(args[j]);
+		new_node = ft_lstnew((void *)num);
 		ft_lstadd_back(stack_a, new_node);
 		j++;
 	}
@@ -52,6 +53,7 @@ int	check_and_load(char *argv[], t_list **stack_a)
 		if (args == NULL)
 			exit (1);
 		validate_arg(args, stack_a);
+		
 		//free args // OJO 2D
 		i++;		
 	}
@@ -78,18 +80,18 @@ int push_swap (list stack_a)
 
 int main (int argc, char *argv[])
 {
-	t_list	*stack_a;  //OJO Malloc
+	t_list	**stack_a;  //OJO Malloc
 //	t_list	*stack_b;  //OJO Malloc
-	void (*ptr)(int);
-
-	ptr = &ft_putnbr_endl;
 	
+	stack_a = NULL;
 	if (argc == 1)
 		 return (-1);
-	check_and_load(argv, &stack_a);  //if fails call exit
+	
+	check_and_load(argv, stack_a);  //if fails call exit
 
 
-	ft_lstclear(&stack_a, (*ptr));  //print & free stack_a
+	ft_lstiter(*stack_a, ft_putnbr_endl);
+	ft_lstclear(stack_a, free);  //print & free stack_a
 
 	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )

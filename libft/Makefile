@@ -4,17 +4,13 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strle
 		  ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c \
 		  ft_calloc.c ft_strdup.c \
 		  ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
-		  ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-
-BONUS	= ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstadd_back_bonus.c \
-		  ft_lstlast_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c \
-		  ft_lstmap_bonus.c
+		  ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c \
+		  ft_lstadd_front.c ft_lstsize.c ft_lstadd_back.c ft_lstlast.c \
+		  ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 OBJDIR = bin
 OBJS	= ${SRCS:%.c=$(OBJDIR)/%.o}
-OBJ_BONUS = ${BONUS:%.c=$(OBJDIR)/%.o}
 NAME	= libft.a
-NAME_BONUS = .bonus
 RM	= rm -rf
 CC = gcc
 CFLAGS	= -Wall -Wextra -Werror
@@ -29,25 +25,15 @@ $(OBJS): | $(OBJDIR)
 
 all:	${NAME} bonus
 
-bonus: ${NAME_BONUS}
-
-${NAME_BONUS}: ${OBJ_BONUS} 
-	@ar crus ${NAME} ${OBJ_BONUS}
-	@touch .bonus
-
-$(OBJ_BONUS): | $(OBJDIR)
-
 ${OBJDIR}:
 	@mkdir ${OBJDIR}
 
 clean: 
-		@${RM} ${OBJS} ${OBJ_BONUS} 
+		@${RM} ${OBJS}
 
 fclean:		clean
-			@${RM} ${NAME} ${NAME_BONUS} $(OBJDIR)
+			@${RM} ${NAME} $(OBJDIR)
 
 re:	fclean all
 
-re_bonus: re bonus
-
-.PHONY: all bonus clean fclean re re_bonus
+.PHONY: all clean fclean re

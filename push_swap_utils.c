@@ -6,9 +6,11 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/06 23:35:26 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:36:02 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 //free malloc 2D   //variadric?
 //
@@ -26,7 +28,7 @@ int	is_valid_str_for_int(char *str)
 	int i;
 	
 	i = 0;
-	if (str[i] º== '+' || str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] == '0')
 		i++;
@@ -41,9 +43,9 @@ int	is_valid_str_for_int(char *str)
 	return (1);
 }
 
-void	ft_putnbr_endl(int n)
+void	ft_putnbr_endl(void *num)
 {
-	ft_putnbr_fd(n, 1);
+	ft_putnbr_fd(*(int *)(num), 1);
 	write(1, "\n", 1);
 	return ;
 }
