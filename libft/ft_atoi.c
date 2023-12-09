@@ -25,9 +25,7 @@ int	ft_atoi(const char *str)
 	long			num;
 	int				sign;
 	int				i;
-	unsigned int	uintmax;
 
-	uintmax = (unsigned int) -1;
 	num = 0;
 	sign = 1;
 	i = 0;
@@ -37,12 +35,12 @@ int	ft_atoi(const char *str)
 		sign = -1;
 	if (str[i] == '-' || str[i] == '+') 
 		i++;
-	while (!ft_isdigit(str[i]))
+	while (ft_isdigit(str[i]))
 	{
 		num = num * 10 + (sign * (str[i] - '0'));
 		i++;
 	}
-	if ((2 * sign * num) > (uintmax - sign))
+	if (num < INT_MIN || num > INT_MAX)
 		error_exit_atoi(4);
 	return ((int)num);
 }

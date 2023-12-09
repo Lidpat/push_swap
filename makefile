@@ -6,7 +6,7 @@
 #    By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 19:54:20 by lpalacio          #+#    #+#              #
-#    Updated: 2023/12/08 13:33:56 by lpalacio         ###   ########.fr        #
+#    Updated: 2023/12/09 21:20:16 by lpalacio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT = libft.a
 
 
 ${NAME}: ${SRCS} | ${LIBFT}
-	@$(CC) -o ${NAME} ${SRCS} ${CLIBFT} ${CFLAGS} 
+	@$(CC) -g -o ${NAME} ${SRCS} ${CLIBFT} ${CFLAGS} 
 
 all: ${NAME}
 

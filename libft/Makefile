@@ -13,7 +13,7 @@ OBJS	= ${SRCS:%.c=$(OBJDIR)/%.o}
 NAME	= libft.a
 RM	= rm -rf
 CC = gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -g -Wall -Wextra -Werror
 
 bin/%.o : %.c
 		@$(CC) ${CFLAGS} -c $< -o $@

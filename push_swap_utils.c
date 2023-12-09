@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/08 13:36:02 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/09 21:19:25 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,23 @@ int	is_valid_str_for_int(char *str)
 	int i;
 	
 	i = 0;
+
+	if (!str)
+		exit(5);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] == '0')
+	{		
+		if (!str[i+1])
+			return (1);
 		i++;
+	}
 	if ((ft_strlen(str) - i) > 10)
-		error_and_exit(1);;
+		error_and_exit(3);;
 	while (str[i])
 	{
-		if(!ft_isdigit(str[i]))  //Castear? BORRAR
-			error_and_exit(1);
+		if(!ft_isdigit((int)str[i]))  //Castear? BORRAR
+			error_and_exit(4);
 		i++;
 	}
 	return (1);
