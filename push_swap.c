@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/09 22:35:35 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:31:42 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,27 @@ list	load_stack (char *argv)
 t_list	*validate_arg(char **args, t_list **stack_a)
 {
 	int	j;
-	int	*num;
+	int	**num;
 	t_list	*new_node;
 
-	num = malloc(sizeof(int));
+	j = count_rows(args);
+	num = (int **)ft_calloc(j, sizeof(int *));
 	if (num == NULL)
 		exit (2);
 	j = 0;
 	while (args[j])
 	{
 		is_valid_str_for_int(args[j]);
-		*num = ft_atoi(args[j]);
+		num[j] = (int *)ft_calloc(1, sizeof(int));
+		if (!num[j])
+			exit (22);
+		*num[j] = ft_atoi(args[j]);
 		free(args[j]);
-		new_node = ft_lstnew((void *)num);
+		new_node = ft_lstnew((void *)num[j]);
 		ft_lstadd_back(stack_a, new_node);
 		j++;
 	}
+	free (num);
 	return (0);
 }
 

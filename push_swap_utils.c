@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/09 21:19:25 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:24:38 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,14 @@ void	ft_putnbr_endl(void *num)
 	ft_putnbr_fd(*(int *)(num), 1);
 	write(1, "\n", 1);
 	return ;
+}
+
+int	count_rows(char **args)
+{
+	int	row;
+
+	row = 0;
+	while(args[row])
+		row++;
+	return (row);
 }
