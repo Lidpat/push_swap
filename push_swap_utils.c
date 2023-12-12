@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/12 21:24:38 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:46:15 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	is_valid_str_for_int(char *str)
 			return (1);
 		i++;
 	}
-	if ((ft_strlen(str) - i) > 10)
+	if (!str[i] || (ft_strlen(str) - i) > 10)
 		error_and_exit(3);;
 	while (str[i])
 	{
