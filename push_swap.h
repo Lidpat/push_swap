@@ -20,6 +20,9 @@ int 	is_valid_str_for_int(char *str);
 void	ft_putnbr_endl(void *n);
 int		count_rows(char **args);
 
+/** moves_push_swap.c **/
+int swap(t_list **stack);
+
 
 #endif
 

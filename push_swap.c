@@ -12,15 +12,8 @@
 
 #include "push_swap.h"
 
-/*
-list	load_stack (char *argv)
-{
-	//split(argv, ' ')  //MALLOC
-	//atoi
-	//add node to list
-	return (0);
-}
-*/
+//check_duplicated int
+//sortout
 
 t_list	*validate_arg(char **args, t_list **stack_a)
 {
@@ -87,6 +80,7 @@ int push_swap (list stack_a)
 }
 */
 
+#include <stdio.h> // BORRAR
 int main (int argc, char *argv[])
 {
 	t_list	*stack_a;  //OJO Malloc
@@ -99,8 +93,10 @@ int main (int argc, char *argv[])
 	check_and_load(argv, &stack_a);  //if fails call exit
 
 
+	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
+	printf("swap: %d\n", swap(&stack_a));
 	ft_lstiter(stack_a, ft_putnbr_endl);
-	ft_lstclear(&stack_a, free);  //print & free stack_a
+	ft_lstclear(&stack_a, free);  //free stack_a
 
 	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
