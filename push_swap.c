@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/23 21:08:19 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/23 21:34:06 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,15 @@ int main (int argc, char *argv[])
 	write (1, "\n", 1);
 	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
 */
-	/*** TEST ROTATE() ***/
+	/*** TEST ROTATE() o REVERSE() ***/
 	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
 	
-	printf("rotate 1: %d\n", rotate(&stack_a));
+	printf("rotate 1: %d\n", reverse(&stack_a));
 	ft_lstiter(stack_a, ft_putnbr_endl);
 
 	write (1, "-----\n", 6);	
 
-	printf("rotate b: %d\n", rotate(&stack_b));
+	printf("rotate b: %d\n", reverse(&stack_b));
 	ft_lstiter(stack_b, ft_putnbr_endl);
 		
 	ft_lstclear(&stack_a, free);
