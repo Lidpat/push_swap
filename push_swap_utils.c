@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/12 21:46:15 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/23 21:42:28 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ int	is_valid_str_for_int(char *str)
 	return (1);
 }
 
+//print integers on a list
 void	ft_putnbr_endl(void *num)
 {
 	ft_putnbr_fd(*(int *)(num), 1);
 	write(1, "\n", 1);
 	return ;
 }
+
 
 int	count_rows(char **args)
 {
