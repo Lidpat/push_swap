@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 19:49:59 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/23 20:42:16 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/23 21:09:49 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,15 @@ int	push(t_list **lst_src, t_list **lst_dst)
 	return (1);
 }
 
+int	rotate(t_list **stack)
+{
+	t_list *node;
+
+	if (!*stack || !(*stack)->next)
+		return (0);
+	node = *stack;
+	*stack = node->next;
+	node->next = NULL;
+	ft_lstadd_back(stack, node);
+	return (1);
+}
