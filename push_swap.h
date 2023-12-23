@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 21:34:32 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/12 21:24:27 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/23 20:28:24 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		count_rows(char **args);
 
 /** moves_push_swap.c **/
 int swap(t_list **stack);
+int	push(t_list **lst_src, t_list **lst_dst);
 
 
 #endif

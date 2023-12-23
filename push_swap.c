@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 20:47:02 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/12 21:31:42 by lpalacio         ###   ########.fr       */
+/*   Updated: 2023/12/23 20:47:45 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,41 @@ int push_swap (list stack_a)
 int main (int argc, char *argv[])
 {
 	t_list	*stack_a;  //OJO Malloc
-//	t_list	*stack_b;  //OJO Malloc
+	t_list	*stack_b;  //OJO Malloc
 	
 	stack_a = NULL;
+	stack_b = NULL;
 	if (argc == 1)
 		 return (-1);
 	
 	check_and_load(argv, &stack_a);  //if fails call exit
 
-
-	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
+/*** TEST SWAP() ***/
+/*	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
 	printf("swap: %d\n", swap(&stack_a));
 	ft_lstiter(stack_a, ft_putnbr_endl);
 	ft_lstclear(&stack_a, free);  //free stack_a
+*/
+
+	/*** TEST PUSH() ***/
+	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
+	write (1, "\n", 1); 
+	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
+	
+	printf("push 1: %d\n", push(&stack_b, &stack_a));
+	ft_lstiter(stack_a, ft_putnbr_endl);
+	write (1, "\n", 1);
+	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
+
+	write (1, "-----\n", 6);	
+
+	printf("push 2: %d\n", push(&stack_a, &stack_b));
+	ft_lstiter(stack_a, ft_putnbr_endl);
+	write (1, "\n", 1);
+	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
+	
+	ft_lstclear(&stack_a, free);
+	ft_lstclear(&stack_b, free);
 
 	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
