@@ -18,7 +18,7 @@
 void	error_and_exit(int n)
 {
 	ft_putendl_fd("Error", 2);
-	ft_putnbr_fd(n, 2);
+	ft_putnbr_fd(n, 2);  // BORRAR
 	write (2, "\n", 1);
 	exit (n);
 }

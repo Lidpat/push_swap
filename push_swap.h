@@ -31,7 +31,7 @@ int	rotate(t_list **stack);
 int	reverse(t_list **stack);
 
 /**sort_and_duplicates.c*/
-int	check_duplicated_and_sort(t_list *stack);
+void	check_duplicated_and_sort(t_list *stack);
 
 
 #endif

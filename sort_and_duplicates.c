@@ -32,7 +32,7 @@ int	*check_max_and_equal(t_list *lst, int *max)
 }
 
 
-int		check_duplicated_and_sort(t_list *stack)
+void		check_duplicated_and_sort(t_list *stack)
 {
 	t_list	*aux;
 	t_list	*aux2;
@@ -48,24 +48,11 @@ int		check_duplicated_and_sort(t_list *stack)
 		{
 			aux2 = aux->next; 
 			max = check_max_and_equal(aux2, max);
-//			while(aux2)
-//			{
-//				if (((int *)(aux2->content))[position] == 0)
-	
-//				{
-//					if (max[value] == ((int *)(aux2->content))[value])
-//						error_and_exit(6);
-//					if (max[value] < ((int *)(aux2->content))[value])
-//						max = aux2->content;
-//				}
-//				aux2 = aux2->next;
-//			}	
 			max[position] = count;
 			count--;
 		}
 		else
 			aux = aux->next;
 	}
-return (1); // solo para test
 }
 

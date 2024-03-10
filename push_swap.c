@@ -86,6 +86,7 @@ int main (int argc, char *argv[])
 		 return (-1);
 	
 	check_and_load(argv, &stack_a);  //if fails call exit
+	check_duplicated_and_sort(stack_a);
 
 /*** TEST SWAP() ***/
 /*	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
@@ -130,9 +131,10 @@ int main (int argc, char *argv[])
 	
 	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
 	
-	printf("Check duplicates and pre-sort: %d\n", check_duplicated_and_sort(stack_a));
+/*	printf("Check duplicates and pre-sort: \n");
+	check_duplicated_and_sort(stack_a);
 	ft_lstiter(stack_a, ft_putnbr_endl);
-	
+*/
 	
 	
 	//push_swap(<lista generada en stack_load>)  
