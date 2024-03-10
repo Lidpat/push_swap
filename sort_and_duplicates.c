@@ -12,24 +12,18 @@
 
 #include "push_swap.h"
 
-/*void	check_max_and_equal(t_list *lst, int *max)
+int	*check_max_and_equal(t_list *lst, int *max)
 {
 	t_list	*aux2;
 
 	aux2 = lst;
-	while(aux2)
-	{
-		if (((int *)(aux2->content))[position] == 0)
-		{
-			if (max[value] == ((int *)(aux2->content))[value])
-				error_and_exit(6);
-			if (max[value] < ((int *)(aux2->content))[value])
-				max = aux2->content;
-		}
-		aux2 = aux2->next;
-	}	
+	if (max[value] == ((int *)(aux2->content))[value])
+		error_and_exit(6);
+	if (max[value] < ((int *)(aux2->content))[value])
+		return (aux2->content);
+	return (max);
 }
-*/
+
 
 int		check_duplicated_and_sort(t_list *stack)
 {
@@ -39,7 +33,6 @@ int		check_duplicated_and_sort(t_list *stack)
 	int		*max;
 
 	aux = stack;
-	aux2 = stack;
 	count = ft_lstsize(stack);
 	while(count)
 	{
@@ -50,15 +43,15 @@ int		check_duplicated_and_sort(t_list *stack)
 			while(aux2)
 			{
 				if (((int *)(aux2->content))[position] == 0)
-				{
-					if (max[value] == ((int *)(aux2->content))[value])
-						error_and_exit(6);
-					if (max[value] < ((int *)(aux2->content))[value])
-						max = aux2->content;
-				}
+					max = check_max_and_equal(aux2, max);
+//				{
+//					if (max[value] == ((int *)(aux2->content))[value])
+//						error_and_exit(6);
+//					if (max[value] < ((int *)(aux2->content))[value])
+//						max = aux2->content;
+//				}
 				aux2 = aux2->next;
 			}	
-//			check_max_and_equal(aux2, max);
 			max[position] = count;
 			count--;
 		}
