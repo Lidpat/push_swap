@@ -50,10 +50,12 @@ int	is_valid_str_for_int(char *str)
 	return (1);
 }
 
-//print integers on a list
+//print pair of integers in a 2D on a list
 void	ft_putnbr_endl(void *num)
 {
-	ft_putnbr_fd(*(int *)(num), 1);
+	ft_putnbr_fd(((int *)(num))[value], 1);
+	write(1,"\t",1);
+	ft_putnbr_fd(((int *)(num))[position], 1);
 	write(1, "\n", 1);
 	return ;
 }

@@ -14,6 +14,10 @@
 # define PUSH_SWAP_H
 # include "libft/libft.h"
 
+enum    stack_content{
+    value = 0,
+    position = 1
+};
 
 void	error_and_exit(int n);
 int 	is_valid_str_for_int(char *str);

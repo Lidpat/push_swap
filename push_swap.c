@@ -29,10 +29,12 @@ t_list	*validate_arg(char **args, t_list **stack_a)
 	while (args[j])
 	{
 		is_valid_str_for_int(args[j]);
-		num[j] = (int *)ft_calloc(1, sizeof(int));
+		num[j] = (int *)ft_calloc(2, sizeof(int));
 		if (!num[j])
 			exit (22);
-		*num[j] = ft_atoi(args[j]);
+//		*num[j] = ft_atoi(args[j]);
+		num[j][value] = ft_atoi(args[j]);
+		num[j][position] = 0;
 		free(args[j]);
 		new_node = ft_lstnew((void *)num[j]);
 		ft_lstadd_back(stack_a, new_node);
