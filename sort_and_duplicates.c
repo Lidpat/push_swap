@@ -17,10 +17,17 @@ int	*check_max_and_equal(t_list *lst, int *max)
 	t_list	*aux2;
 
 	aux2 = lst;
-	if (max[value] == ((int *)(aux2->content))[value])
-		error_and_exit(6);
-	if (max[value] < ((int *)(aux2->content))[value])
-		return (aux2->content);
+	while(aux2)
+	{
+		if (((int *)(aux2->content))[position] == 0)
+		{
+			if (max[value] == ((int *)(aux2->content))[value])
+				error_and_exit(6);
+			if (max[value] < ((int *)(aux2->content))[value])
+				max = aux2->content;
+		}
+		aux2 = aux2->next;
+	}		
 	return (max);
 }
 
@@ -40,18 +47,19 @@ int		check_duplicated_and_sort(t_list *stack)
 		if (max[position] == 0)
 		{
 			aux2 = aux->next; 
-			while(aux2)
-			{
-				if (((int *)(aux2->content))[position] == 0)
-					max = check_max_and_equal(aux2, max);
+			max = check_max_and_equal(aux2, max);
+//			while(aux2)
+//			{
+//				if (((int *)(aux2->content))[position] == 0)
+	
 //				{
 //					if (max[value] == ((int *)(aux2->content))[value])
 //						error_and_exit(6);
 //					if (max[value] < ((int *)(aux2->content))[value])
 //						max = aux2->content;
 //				}
-				aux2 = aux2->next;
-			}	
+//				aux2 = aux2->next;
+//			}	
 			max[position] = count;
 			count--;
 		}
