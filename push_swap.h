@@ -30,6 +30,9 @@ int	push(t_list **lst_src, t_list **lst_dst);
 int	rotate(t_list **stack);
 int	reverse(t_list **stack);
 
+/**sort_and_duplicates.c*/
+int	check_duplicated_and_sort(t_list *stack);
+
 
 #endif
 
