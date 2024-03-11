@@ -24,33 +24,7 @@ void	error_and_exit(int n)
 }
 
 
-/* Check if string has valid length and characters to be an integer */
-int	is_valid_str_for_int(char *str)
-{
-	int i;
-	
-	i = 0;
 
-	if (!str)
-		exit(5);
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	while (str[i] == '0')
-	{		
-		if (!str[i+1])
-			return (1);
-		i++;
-	}
-	if (!str[i] || (ft_strlen(str) - i) > 10)
-		error_and_exit(3);;
-	while (str[i])
-	{
-		if(!ft_isdigit((int)str[i]))  //Castear? BORRAR
-			error_and_exit(4);
-		i++;
-	}
-	return (1);
-}
 
 //print pair of integers in a 2D on a list
 void	ft_putnbr_endl(void *num)

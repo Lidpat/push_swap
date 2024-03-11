@@ -32,6 +32,7 @@ int	reverse(t_list **stack);
 
 /**sort_and_duplicates.c*/
 void	check_duplicated_and_sort(t_list *stack);
+int	    check_and_load(char *argv[], t_list **stack_a);
 
 
 #endif

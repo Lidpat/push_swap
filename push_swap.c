@@ -12,56 +12,7 @@
 
 #include "push_swap.h"
 
-//check_duplicated int
-//sortout
 
-t_list	*validate_arg(char **args, t_list **stack_a)
-{
-	int	j;
-	int	**num;
-	t_list	*new_node;
-
-	j = count_rows(args);
-	num = (int **)ft_calloc(j, sizeof(int *));
-	if (num == NULL)
-		exit (2);
-	j = 0;
-	while (args[j])
-	{
-		is_valid_str_for_int(args[j]);
-		num[j] = (int *)ft_calloc(2, sizeof(int));
-		if (!num[j])
-			exit (22);
-		num[j][value] = ft_atoi(args[j]);
-		num[j][position] = 0;
-		free(args[j]);
-		new_node = ft_lstnew((void *)num[j]);
-		ft_lstadd_back(stack_a, new_node);
-		j++;
-	}
-	free (num);
-	return (0);
-}
-
-int	check_and_load(char *argv[], t_list **stack_a)
-{
-	int		 i;
-	char	**args;
-	
-	i = 1;  // arg(0) es el comando de llamada al programa
-	while (argv[i])
-	{
-		args = ft_split(argv[i], ' ');
-		if (args == NULL)
-			exit (1);
-		validate_arg(args, stack_a);
-		free(args);
-		
-		//free args // OJO 2D
-		i++;		
-	}
-	return (0);
-}
 
 /*
 int push_swap (list stack_a)
@@ -87,6 +38,8 @@ int main (int argc, char *argv[])
 	
 	check_and_load(argv, &stack_a);  //if fails call exit
 	check_duplicated_and_sort(stack_a);
+
+/************ TESTS BLOCK *******************************************************************/
 
 /*** TEST SWAP() ***/
 /*	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
@@ -126,17 +79,11 @@ int main (int argc, char *argv[])
 		
 	ft_lstclear(&stack_a, free);
 	ft_lstclear(&stack_b, free);
-*/
-	/*** TEST CHECK DUPLICATES AND PRE-SORT ***/
-	
+*/	
 	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
 	
-/*	printf("Check duplicates and pre-sort: \n");
-	check_duplicated_and_sort(stack_a);
-	ft_lstiter(stack_a, ft_putnbr_endl);
-*/
-	
-	
+/************ Fin Test Block *******************************************************************/
+
 	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
 	//FREE stack_a  stack_b  //free 2D malloc -> variadric

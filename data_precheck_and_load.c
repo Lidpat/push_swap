@@ -12,7 +12,83 @@
 
 #include "push_swap.h"
 
-int	*check_max_and_equal(t_list *lst, int *max)
+/* Check if string has valid length and characters to be an integer */
+int	is_valid_str_for_int(char *str)
+{
+	int i;
+	
+	i = 0;
+
+	if (!str)
+		exit(5);
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] == '0')
+	{		
+		if (!str[i+1])
+			return (1);
+		i++;
+	}
+	if (!str[i] || (ft_strlen(str) - i) > 10)
+		error_and_exit(3);;
+	while (str[i])
+	{
+		if(!ft_isdigit((int)str[i]))  //Castear? BORRAR
+			error_and_exit(4);
+		i++;
+	}
+	return (1);
+}
+
+t_list	*validate_arg(char **args, t_list **stack_a)
+{
+	int	j;
+	int	**num;
+	t_list	*new_node;
+
+	j = count_rows(args);
+	num = (int **)ft_calloc(j, sizeof(int *));
+	if (num == NULL)
+		exit (2);
+	j = 0;
+	while (args[j])
+	{
+		is_valid_str_for_int(args[j]);
+		num[j] = (int *)ft_calloc(2, sizeof(int));
+		if (!num[j])
+			exit (22);
+		num[j][value] = ft_atoi(args[j]);
+		num[j][position] = 0;
+		free(args[j]);
+		new_node = ft_lstnew((void *)num[j]);
+		ft_lstadd_back(stack_a, new_node);
+		j++;
+	}
+	free (num);
+	return (0);
+}
+
+int	check_and_load(char *argv[], t_list **stack_a)
+{
+	int		 i;
+	char	**args;
+	
+	i = 1;  // arg(0) es el comando de llamada al programa
+	while (argv[i])
+	{
+		args = ft_split(argv[i], ' ');
+		if (args == NULL)
+			exit (1);
+		validate_arg(args, stack_a);
+		free(args);
+		
+		//free args // OJO 2D
+		i++;		
+	}
+	return (0);
+}
+
+int	*get_max_and_check_dup(t_list *lst, int *max)
 {
 	t_list	*aux2;
 
@@ -31,8 +107,7 @@ int	*check_max_and_equal(t_list *lst, int *max)
 	return (max);
 }
 
-
-void		check_duplicated_and_sort(t_list *stack)
+void	check_duplicated_and_sort(t_list *stack)
 {
 	t_list	*aux;
 	t_list	*aux2;
@@ -47,7 +122,7 @@ void		check_duplicated_and_sort(t_list *stack)
 		if (max[position] == 0)
 		{
 			aux2 = aux->next; 
-			max = check_max_and_equal(aux2, max);
+			max = get_max_and_check_dup(aux2, max);
 			max[position] = count;
 			count--;
 		}
@@ -55,4 +130,3 @@ void		check_duplicated_and_sort(t_list *stack)
 			aux = aux->next;
 	}
 }
-
