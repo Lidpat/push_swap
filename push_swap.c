@@ -12,32 +12,53 @@
 
 #include "push_swap.h"
 
-
-
-/*
-int push_swap (list stack_a)
+int	push_swap (t_list *stack)
 {
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int 	bit;
+	int		bit_value;
+	int		stack_size;
+	int		numb;
+	
+
+	stack_a = stack;
+	stack_b = NULL;
+	bit = 0;
+	
+	stack_size = ft_lstsize(stack_a);
+	//while (bit < bit_max)
+	while (stack_size --)
+	{
+		numb = ((int *)(stack_a->content))[position];
+		bit_value = (numb >> bit) % 2;
+		ft_putnbr_fd (numb, 1);
+		write (1, "\t", 1);
+		ft_putnbr_fd (bit_value, 1);
+		write (1, "\n", 1);
+		stack_a = stack_a->next;
+	}
 	//VARS
 	//  *int instruction_list (int[]) //integer string mapear valores movimientos (1=sa 2=sa 3=ss 4=ra 5=rb...  10=rrb 11=rrr) 
-	
-	//
 	return (0);
 }
-*/
 
 #include <stdio.h> // BORRAR
 int main (int argc, char *argv[])
 {
-	t_list	*stack_a;  //OJO Malloc
-	t_list	*stack_b;  //OJO Malloc
+	t_list	*stack;  //OJO Malloc
+	//t_list	*stack_b;  //OJO Malloc
 	
-	stack_a = NULL;
-	stack_b = NULL;
+	stack = NULL;
+	//stack_b = NULL;
 	if (argc == 1)
 		 return (-1);
+	else if (argc == 2)
+		return(0);
 	
-	check_and_load(argv, &stack_a);  //if fails call exit
-	check_duplicated_and_sort(stack_a);
+	check_and_load(argv, &stack);  //if fails call exit
+	check_duplicated_and_sort(stack);
+	push_swap(stack);
 
 /************ TESTS BLOCK *******************************************************************/
 
@@ -80,7 +101,8 @@ int main (int argc, char *argv[])
 	ft_lstclear(&stack_a, free);
 	ft_lstclear(&stack_b, free);
 */	
-	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
+	write (1, "- - -- - -\n", 11);
+	ft_lstiter(stack, ft_putnbr_endl);  //print stack_a
 	
 /************ Fin Test Block *******************************************************************/
 
