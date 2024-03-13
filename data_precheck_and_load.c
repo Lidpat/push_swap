@@ -58,7 +58,7 @@ t_list	*validate_arg(char **args, t_list **stack_a)
 		if (!num[j])
 			exit (22);
 		num[j][value] = ft_atoi(args[j]);
-		num[j][position] = 0;
+		num[j][position] = unset;
 		free(args[j]);
 		new_node = ft_lstnew((void *)num[j]);
 		ft_lstadd_back(stack_a, new_node);
@@ -95,7 +95,7 @@ int	*get_max_and_check_dup(t_list *lst, int *max)
 	aux2 = lst;
 	while(aux2)
 	{
-		if (((int *)(aux2->content))[position] == 0)
+		if (((int *)(aux2->content))[position] == unset)
 		{
 			if (max[value] == ((int *)(aux2->content))[value])
 				error_and_exit(6);
@@ -109,22 +109,22 @@ int	*get_max_and_check_dup(t_list *lst, int *max)
 
 void	check_duplicated_and_sort(t_list *stack)
 {
-	t_list			*aux;
-	t_list			*aux2;
-	unsigned int	count;
-	int				*max;
+	t_list	*aux;
+	t_list	*aux2;
+	int		count;
+	int		*max;
 
 	aux = stack;
 	count = ft_lstsize(stack);
 	while(count)
 	{
 		max = aux->content;
-		if (max[position] == 0)
+		if (max[position] == unset)
 		{
 			aux2 = aux->next; 
 			max = get_max_and_check_dup(aux2, max);
-			max[position] = count;
-			count--;
+			max[position] = --count;
+			//count--;
 		}
 		else
 			aux = aux->next;

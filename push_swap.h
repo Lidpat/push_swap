@@ -19,6 +19,10 @@ enum    stack_content{
     position = 1
 };
 
+enum    stack_position{
+    unset = UINT16_MAX + 1
+};
+
 void	error_and_exit(int n);
 int 	is_valid_str_for_int(char *str);
 void	ft_putnbr_endl(void *n);

@@ -23,9 +23,6 @@ void	error_and_exit(int n)
 	exit (n);
 }
 
-
-
-
 //print pair of integers in a 2D on a list
 void	ft_putnbr_endl(void *num)
 {
@@ -35,7 +32,6 @@ void	ft_putnbr_endl(void *num)
 	write(1, "\n", 1);
 	return ;
 }
-
 
 int	count_rows(char **args)
 {

@@ -12,12 +12,36 @@
 
 #include "push_swap.h"
 
+int	get_bits_number(int	lst_size)
+{
+	if (lst_size < 4)
+		return (2);
+	if (lst_size < 8)
+		return (3);
+	if (lst_size < 16)
+		return (4);
+	if (lst_size < 32)
+		return (5);
+	if (lst_size < 64)
+		return (6);		
+	if (lst_size < 128)
+		return (7);
+	if (lst_size < 256)
+		return (8);
+	if (lst_size < 512)
+		return (9);
+	if (lst_size < 1024)
+		return (10);
+	return (32);
+}
+
 int	push_swap (t_list *stack)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
 	int 	bit;
 	int		bit_value;
+	int		bit_max;
 	int		stack_size;
 	int		numb;
 	
@@ -27,6 +51,7 @@ int	push_swap (t_list *stack)
 	bit = 0;
 	
 	stack_size = ft_lstsize(stack_a);
+	bit_max = get_bits_number(stack_size);
 	//while (bit < bit_max)
 	while (stack_size --)
 	{
