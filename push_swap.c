@@ -14,25 +14,48 @@
 
 int	get_bits_number(int	lst_size)
 {
-	if (lst_size < 4)
+	if (lst_size <= 2)
+		return (1);
+	if (lst_size <= 4)
 		return (2);
-	if (lst_size < 8)
+	if (lst_size <= 8)
 		return (3);
-	if (lst_size < 16)
+	if (lst_size <= 16)
 		return (4);
-	if (lst_size < 32)
+	if (lst_size <= 32)
 		return (5);
-	if (lst_size < 64)
+	if (lst_size <= 64)
 		return (6);		
-	if (lst_size < 128)
+	if (lst_size <= 128)
 		return (7);
-	if (lst_size < 256)
+	if (lst_size <= 256)
 		return (8);
-	if (lst_size < 512)
+	if (lst_size <= 512)
 		return (9);
-	if (lst_size < 1024)
+	if (lst_size <= 1024)
 		return (10);
-	return (32);
+	return (16);
+}
+
+//function applicable to ft_lstiter f(aux->content)
+void	move_zero_right(t_list *lst, int bit)
+{
+	int		numb;
+	int		bit_value;
+	t_list	*aux;
+
+	aux = lst;
+	while (aux != NULL)
+	{
+		numb = ((int *)(aux->content))[position];
+		bit_value = (numb >> bit) % 2;
+		ft_putnbr_fd (numb, 1);
+		write (1, "\t", 1);
+		ft_putnbr_fd (bit_value, 1);
+		write (1, "\n", 1);
+		aux = aux->next; 
+	}
+	
 }
 
 int	push_swap (t_list *stack)
@@ -40,29 +63,38 @@ int	push_swap (t_list *stack)
 	t_list	*stack_a;
 	t_list	*stack_b;
 	int 	bit;
-	int		bit_value;
+//	int		bit_value;
 	int		bit_max;
 	int		stack_size;
-	int		numb;
+//	int		numb;
 	
 
 	stack_a = stack;
 	stack_b = NULL;
 	bit = 0;
 	
-	stack_size = ft_lstsize(stack_a);
+	stack_size = ft_lstsize(stack);
 	bit_max = get_bits_number(stack_size);
 	//while (bit < bit_max)
-	while (stack_size --)
+	while(bit < bit_max)
 	{
-		numb = ((int *)(stack_a->content))[position];
-		bit_value = (numb >> bit) % 2;
-		ft_putnbr_fd (numb, 1);
-		write (1, "\t", 1);
-		ft_putnbr_fd (bit_value, 1);
-		write (1, "\n", 1);
-		stack_a = stack_a->next;
+	//	stack_a = stack;
+	//	stack_size = ft_lstsize(stack_a);
+		move_zero_right(stack_a, bit);
+/*		while (stack_size --)
+		{
+			numb = ((int *)(stack_a->content))[position];
+			bit_value = (numb >> bit) % 2;
+			ft_putnbr_fd (numb, 1);
+			write (1, "\t", 1);
+			ft_putnbr_fd (bit_value, 1);
+			write (1, "\n", 1);
+			stack_a = stack_a->next;
+		}
+*/		write (1, "---\n", 4);
+		bit++;
 	}
+	
 	//VARS
 	//  *int instruction_list (int[]) //integer string mapear valores movimientos (1=sa 2=sa 3=ss 4=ra 5=rb...  10=rrb 11=rrr) 
 	return (0);

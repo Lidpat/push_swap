@@ -20,7 +20,7 @@ enum    stack_content{
 };
 
 enum    stack_position{
-    unset = UINT16_MAX + 1
+    unset = UINT16_MAX
 };
 
 void	error_and_exit(int n);
