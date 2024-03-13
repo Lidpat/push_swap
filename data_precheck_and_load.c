@@ -109,10 +109,10 @@ int	*get_max_and_check_dup(t_list *lst, int *max)
 
 void	check_duplicated_and_sort(t_list *stack)
 {
-	t_list	*aux;
-	t_list	*aux2;
-	int		count;
-	int		*max;
+	t_list			*aux;
+	t_list			*aux2;
+	unsigned int	count;
+	int				*max;
 
 	aux = stack;
 	count = ft_lstsize(stack);
