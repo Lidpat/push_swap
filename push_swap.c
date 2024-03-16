@@ -37,7 +37,6 @@ int	get_bits_number(int	lst_size)
 	return (16);
 }
 
-//function applicable to ft_lstiter f(aux->content)
 void	move_zero_right(t_list **lst_src, t_list **lst_dst, int bit)
 {
 	int		numb;
@@ -52,9 +51,15 @@ void	move_zero_right(t_list **lst_src, t_list **lst_dst, int bit)
 		numb = ((int *)(aux->content))[position];
 		bit_value = (numb >> bit) % 2;
 		if (bit_value == 0)
+		{
 			push(lst_src, lst_dst);
-		else
+			write (1, "pb\n", 3);
+		}
+		else //if (stack_size > 0)
+		{	
 			rotate(lst_src);
+			write (1, "ra\n", 3);
+		}
 //		ft_putnbr_fd (numb, 1);
 //		write (1, "\t", 1);
 //		ft_putnbr_fd (bit_value, 1);
@@ -79,9 +84,15 @@ void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
 		numb = ((int *)(aux->content))[position];
 		bit_value = (numb >> bit) % 2;
 		if (bit_value == 1)
+		{
 			push(lst_src, lst_dst);
-		else
+			write (1, "pa\n", 3);
+		}
+		else //if (stack_size > 0)
+		{
 			rotate(lst_src);
+			write (1, "rb\n", 3);
+		}
 //		ft_putnbr_fd (numb, 1);
 //		write (1, "\t", 1);
 //		ft_putnbr_fd (bit_value, 1);
@@ -89,7 +100,18 @@ void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
 		//aux = aux->next;
 		aux = *lst_src; 
 	}
-	
+}
+
+void	move_all_b(t_list **lst_src, t_list **lst_dst)
+{
+	int	stack_size;
+
+	stack_size = ft_lstsize(*lst_src);
+	while (stack_size--)
+	{
+		push(lst_src, lst_dst);
+		write (1, "pa\n", 3);
+	}
 }
 
 int	push_swap (t_list *stack)
@@ -109,29 +131,26 @@ int	push_swap (t_list *stack)
 	stack_size = ft_lstsize(stack);
 	bit_max = get_bits_number(stack_size);
 	//while (bit < bit_max)
-		ft_lstiter(stack_a, ft_putnbr_endl);
-	write (1, "\n", 1);
+	//	ft_lstiter(stack_a, ft_putnbr_endl);
+	//write (1, "\n", 1);
 	while(bit < bit_max)
 	{
-		move_zero_right(&stack_a, &stack_b, bit);
-		write (1, "---\n", 4);
+		if (bit == 0)
+			move_zero_right(&stack_a, &stack_b, bit);
+		else
+		{
+			move_one_left(&stack_b, &stack_a, bit);
+			move_zero_right(&stack_a, &stack_b, bit);
+		}
 		bit++;
 	}
-	
-	bit = bit_max - 1;
-	while(bit >= 0)
-	{
-		move_one_left(&stack_b, &stack_a, bit);
-		write (1, "---\n", 4);
-		bit--;
-	}
-	push(&stack_b, &stack_a);
+	move_all_b(&stack_b, &stack_a);
 
-		write (1, "* Stack_A\n", 10);
-	ft_lstiter(stack_a, ft_putnbr_endl);
-	write (1, "\n", 1);
-	write (1, "* Stack_B\n", 10);
-	ft_lstiter(stack_b, ft_putnbr_endl);
+	// 	write (1, "* Stack_A\n", 10);
+	// ft_lstiter(stack_a, ft_putnbr_endl);
+	// write (1, "\n", 1);
+	// write (1, "* Stack_B\n", 10);
+	// ft_lstiter(stack_b, ft_putnbr_endl);
 
 	//VARS
 	//  *int instruction_list (int[]) //integer string mapear valores movimientos (1=sa 2=sa 3=ss 4=ra 5=rb...  10=rrb 11=rrr) 
@@ -144,7 +163,8 @@ int main (int argc, char *argv[])
 {
 	t_list	*stack;  //OJO Malloc
 	//t_list	*stack_b;  //OJO Malloc
-	
+	int sort;
+
 	stack = NULL;
 	//stack_b = NULL;
 	if (argc == 1)
@@ -154,6 +174,11 @@ int main (int argc, char *argv[])
 	
 	check_and_load(argv, &stack);  //if fails call exit
 	check_duplicated_and_sort(stack);
+	sort = is_sorted(stack);
+	if (sort)
+		printf("stack entrada ordenado\n");
+	else
+		printf ("stack entrada Desordenado\n"); 	
 	push_swap(stack);
 
 /************ TESTS BLOCK *******************************************************************/

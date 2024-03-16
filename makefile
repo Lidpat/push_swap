@@ -24,6 +24,7 @@ LIBFT = libft.a
 
 ${NAME}: ${SRCS} | ${LIBFT}
 	@$(CC) -g -o ${NAME} ${SRCS} ${CLIBFT} ${CFLAGS} 
+	@echo "push_swap has been compiled"
 
 all: ${NAME}
 

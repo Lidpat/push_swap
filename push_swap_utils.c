@@ -42,3 +42,20 @@ int	count_rows(char **args)
 		row++;
 	return (row);
 }
+
+int	is_sorted(t_list *lst)
+{
+	t_list	*aux;
+	int	num;  
+
+	aux = lst;
+		while (aux != NULL)
+		{
+			num = ((int *)(aux->content))[position];
+			aux = aux->next;
+			if (aux != NULL && num > ((int *)(aux->content))[position])
+				return (0);
+		}
+	return (1);
+}
+
