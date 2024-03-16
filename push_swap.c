@@ -169,9 +169,7 @@ int main (int argc, char *argv[])
 	//stack_b = NULL;
 	if (argc == 1)
 		 return (-1);
-	else if (argc == 2)
-		return(0);
-	
+
 	check_and_load(argv, &stack);  //if fails call exit
 	check_duplicated_and_sort(stack);
 	sort = is_sorted(stack);

@@ -33,7 +33,7 @@ int	is_valid_str_for_int(char *str)
 		error_and_exit(3);;
 	while (str[i])
 	{
-		if(!ft_isdigit((int)str[i]))  //Castear? BORRAR
+		if(!ft_isdigit((int)str[i]))
 			error_and_exit(4);
 		i++;
 	}
