@@ -173,11 +173,13 @@ int main (int argc, char *argv[])
 	check_and_load(argv, &stack);  //if fails call exit
 	check_duplicated_and_sort(stack);
 	sort = is_sorted(stack);
-	if (sort)
-		printf("stack entrada ordenado\n");
-	else
-		printf ("stack entrada Desordenado\n"); 	
-	push_swap(stack);
+	if (!sort)
+		push_swap(stack);
+
+	//if (is_sorted(stack))
+	//	printf("\nOKI\n");
+	//else
+	//	printf("\nKO\n");  	
 
 /************ TESTS BLOCK *******************************************************************/
 
