@@ -114,7 +114,7 @@ void	move_all_b(t_list **lst_src, t_list **lst_dst)
 	}
 }
 
-void	ps_sort_over100(t_list *stack_a, int stack_size)
+void	radix_sort(t_list *stack_a, int stack_size)
 {
 	t_list	*stack_b;
 	int		bit;
@@ -142,7 +142,13 @@ int	push_swap (t_list *stack)
 	int		stack_size;
 	
 	stack_size = ft_lstsize(stack);
-	ps_sort_over100(stack, stack_size);
+	if (stack_size == 2)
+	{
+		swap(&stack);
+		write (1, "sa\n", 3); 
+	}
+	else
+		radix_sort(stack, stack_size);
 
 	return (0);
 	
