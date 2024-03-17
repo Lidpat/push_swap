@@ -56,10 +56,8 @@ void	move_zero_right(t_list **lst_src, t_list **lst_dst, int bit)
 			write (1, "pb\n", 3);
 		}
 		else //if (stack_size > 0)
-		{	
-			rotate(lst_src);
-			write (1, "ra\n", 3);
-		}
+			rotate(lst_src, "ra\n");
+
 //		ft_putnbr_fd (numb, 1);
 //		write (1, "\t", 1);
 //		ft_putnbr_fd (bit_value, 1);
@@ -89,10 +87,8 @@ void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
 			write (1, "pa\n", 3);
 		}
 		else //if (stack_size > 0)
-		{
-			rotate(lst_src);
-			write (1, "rb\n", 3);
-		}
+			rotate(lst_src, "rb\n");
+
 //		ft_putnbr_fd (numb, 1);
 //		write (1, "\t", 1);
 //		ft_putnbr_fd (bit_value, 1);
@@ -137,16 +133,60 @@ void	radix_sort(t_list *stack_a, int stack_size)
 	move_all_b(&stack_b, &stack_a);
 }
 
+void	sort_3numb(t_list *stack_a)
+{
+	t_list	*aux;
+	int	num0;
+	int diff;  
+
+	aux = stack_a;
+	num0 = ((int *)(aux->content))[position];
+	aux = aux->next;
+	diff = ((int *)(aux->content))[position] - num0;
+	if (diff == 1)
+		reverse(&stack_a, "rra\n");
+	else if (diff == -2)
+		rotate (&stack_a, "ra\n");
+	else if (diff == -1)
+	{
+		aux = aux->next;
+		diff = num0 - ((int *)(aux->content))[position];
+		if (diff == -1)
+			swap(&stack_a, "sa\n");
+		else if (diff == 2)
+		{
+			swap(&stack_a, "sa\n");
+			reverse(&stack_a, "rra\n");
+		}
+		else
+			ft_putstr_fd("whaat?!?!!", 1); 
+
+	}
+	else if (diff == 2)
+	{
+		aux = aux->next;
+		diff = num0 - ((int *)(aux->content))[position];
+		if (diff == -1)
+		{
+			reverse(&stack_a, "rra\n");
+			swap(&stack_a, "sa\n");
+		}
+		else
+			ft_putstr_fd("whaat?!?!!", 1); 
+
+	}
+	
+}
+
 int	push_swap (t_list *stack)
 {
 	int		stack_size;
 	
 	stack_size = ft_lstsize(stack);
 	if (stack_size == 2)
-	{
-		swap(&stack);
-		write (1, "sa\n", 3); 
-	}
+		swap(&stack, "sa\n"); 
+	else if (stack_size == 3)
+		sort_3numb(stack);
 	else
 		radix_sort(stack, stack_size);
 

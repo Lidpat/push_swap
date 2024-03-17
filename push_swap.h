@@ -29,11 +29,12 @@ int 	is_valid_str_for_int(char *str);
 int		count_rows(char **args);
 int	    is_sorted(t_list *lst);
 
+
 /** moves_push_swap.c **/
-int swap(t_list **stack);
+int swap(t_list **stack, char *str);
 int	push(t_list **lst_src, t_list **lst_dst);
-int	rotate(t_list **stack);
-int	reverse(t_list **stack);
+int	rotate(t_list **stack, char *str);
+int	reverse(t_list **stack, char *str);
 
 /** data_precheck_and_load.c **/
 void	check_duplicated_and_sort(t_list *stack);

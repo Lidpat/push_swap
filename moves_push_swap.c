@@ -15,7 +15,7 @@
 /* Permute first and second nodes positions*/
 /* only if there are more than one element*/
 
-int swap(t_list **stack)
+int swap(t_list **stack, char *str)
 {
     t_list *aux;
      
@@ -26,7 +26,8 @@ int swap(t_list **stack)
     *stack = aux->next; // pointer to B 
     aux->next = (*stack)->next; // A points to node B next (nodo 3)
     (*stack)->next = aux; //aux contains pointer to A
-    return (1);
+    ft_putstr_fd(str, 1);
+	return (1);
 }
 
 int	push(t_list **lst_src, t_list **lst_dst)
@@ -41,7 +42,7 @@ int	push(t_list **lst_src, t_list **lst_dst)
 	return (1);
 }
 
-int	rotate(t_list **stack)
+int	rotate(t_list **stack, char *str)
 {
 	t_list *node;
 
@@ -51,10 +52,11 @@ int	rotate(t_list **stack)
 	*stack = node->next;
 	node->next = NULL;
 	ft_lstadd_back(stack, node);
+    ft_putstr_fd(str, 1);
 	return (1);
 }
 
-int	reverse(t_list **stack)
+int	reverse(t_list **stack, char *str)
 {
 	t_list *node;
 	t_list *aux;
@@ -67,5 +69,6 @@ int	reverse(t_list **stack)
 		aux = aux->next;
 	aux->next = NULL;
 	ft_lstadd_front(stack, node);
+    ft_putstr_fd(str, 1);
 	return (1);
 }
