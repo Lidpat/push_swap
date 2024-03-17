@@ -73,7 +73,7 @@ int	check_and_load(char *argv[], t_list **stack_a)
 	int		 i;
 	char	**args;
 	
-	i = 1;  // arg(0) es el comando de llamada al programa
+	i = 1;
 	while (argv[i])
 	{
 		args = ft_split(argv[i], ' ');
@@ -81,8 +81,6 @@ int	check_and_load(char *argv[], t_list **stack_a)
 			exit (1);
 		validate_arg(args, stack_a);
 		free(args);
-		
-		//free args // OJO 2D
 		i++;		
 	}
 	return (0);
@@ -109,10 +107,10 @@ int	*get_max_and_check_dup(t_list *lst, int *max)
 
 void	check_duplicated_and_sort(t_list *stack)
 {
-	t_list			*aux;
-	t_list			*aux2;
-	unsigned int	count;
-	int				*max;
+	t_list	*aux;
+	t_list	*aux2;
+	int		count;
+	int		*max;
 
 	aux = stack;
 	count = ft_lstsize(stack);

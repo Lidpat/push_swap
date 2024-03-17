@@ -114,25 +114,15 @@ void	move_all_b(t_list **lst_src, t_list **lst_dst)
 	}
 }
 
-int	push_swap (t_list *stack)
+void	ps_sort_over100(t_list *stack_a, int stack_size)
 {
-	t_list	*stack_a;
 	t_list	*stack_b;
-	int 	bit;
-//	int		bit_value;
+	int		bit;
 	int		bit_max;
-	int		stack_size;
-//	int		numb;
-	
 
-	stack_a = stack;
 	stack_b = NULL;
 	bit = 0;
-	stack_size = ft_lstsize(stack);
 	bit_max = get_bits_number(stack_size);
-	//while (bit < bit_max)
-	//	ft_lstiter(stack_a, ft_putnbr_endl);
-	//write (1, "\n", 1);
 	while(bit < bit_max)
 	{
 		if (bit == 0)
@@ -145,90 +135,35 @@ int	push_swap (t_list *stack)
 		bit++;
 	}
 	move_all_b(&stack_b, &stack_a);
+}
 
-	// 	write (1, "* Stack_A\n", 10);
-	// ft_lstiter(stack_a, ft_putnbr_endl);
-	// write (1, "\n", 1);
-	// write (1, "* Stack_B\n", 10);
-	// ft_lstiter(stack_b, ft_putnbr_endl);
+int	push_swap (t_list *stack)
+{
+	int		stack_size;
+	
+	stack_size = ft_lstsize(stack);
+	ps_sort_over100(stack, stack_size);
 
-	//VARS
-	//  *int instruction_list (int[]) //integer string mapear valores movimientos (1=sa 2=sa 3=ss 4=ra 5=rb...  10=rrb 11=rrr) 
 	return (0);
 	
 }
 
-#include <stdio.h> // BORRAR
 int main (int argc, char *argv[])
 {
-	t_list	*stack;  //OJO Malloc
-	//t_list	*stack_b;  //OJO Malloc
+	t_list	*stack;
 	int sort;
 
 	stack = NULL;
-	//stack_b = NULL;
 	if (argc == 1)
 		 return (-1);
 
-	check_and_load(argv, &stack);  //if fails call exit
+	check_and_load(argv, &stack);
 	check_duplicated_and_sort(stack);
 	sort = is_sorted(stack);
 	if (!sort)
 		push_swap(stack);
+	ft_lstclear(&stack, free);
 
-	//if (is_sorted(stack))
-	//	printf("\nOKI\n");
-	//else
-	//	printf("\nKO\n");  	
-
-/************ TESTS BLOCK *******************************************************************/
-
-/*** TEST SWAP() ***/
-/*	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
-	printf("swap: %d\n", swap(&stack_a));
-	ft_lstiter(stack_a, ft_putnbr_endl);
-	ft_lstclear(&stack_a, free);  //free stack_a
-*/
-
-	/*** TEST PUSH() ***/
-/*	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
-	write (1, "\n", 1); 
-	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
-	
-	printf("push 1: %d\n", push(&stack_b, &stack_a));
-	ft_lstiter(stack_a, ft_putnbr_endl);
-	write (1, "\n", 1);
-	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
-
-	write (1, "-----\n", 6);	
-
-	printf("push 2: %d\n", push(&stack_a, &stack_b));
-	ft_lstiter(stack_a, ft_putnbr_endl);
-	write (1, "\n", 1);
-	ft_lstiter(stack_b, ft_putnbr_endl);  //print stack_b
-*/
-	/*** TEST ROTATE() o REVERSE() ***/
-/*
-	ft_lstiter(stack_a, ft_putnbr_endl);  //print stack_a
-	
-	printf("rotate 1: %d\n", reverse(&stack_a));
-	ft_lstiter(stack_a, ft_putnbr_endl);
-
-	write (1, "-----\n", 6);	
-
-	printf("rotate b: %d\n", reverse(&stack_b));
-	ft_lstiter(stack_b, ft_putnbr_endl);
-		
-	ft_lstclear(&stack_a, free);
-	ft_lstclear(&stack_b, free);
-*/	
-//	write (1, "- - -- - -\n", 11);
-//	ft_lstiter(stack, ft_putnbr_endl);  //print stack_a
-	
-/************ Fin Test Block *******************************************************************/
-
-	//push_swap(<lista generada en stack_load>)  
 		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
-	//FREE stack_a  stack_b  //free 2D malloc -> variadric
 	return (0);
 }
