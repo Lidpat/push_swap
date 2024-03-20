@@ -32,7 +32,7 @@ int	    is_sorted(t_list *lst);
 
 /** moves_push_swap.c **/
 int swap(t_list **stack, char *str);
-int	push(t_list **lst_src, t_list **lst_dst);
+int	push(t_list **lst_src, t_list **lst_dst, char *str);
 int	rotate(t_list **stack, char *str);
 int	reverse(t_list **stack, char *str);
 

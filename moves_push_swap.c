@@ -30,7 +30,7 @@ int swap(t_list **stack, char *str)
 	return (1);
 }
 
-int	push(t_list **lst_src, t_list **lst_dst)
+int	push(t_list **lst_src, t_list **lst_dst, char *str)
 {
 	t_list *node;
 
@@ -39,6 +39,7 @@ int	push(t_list **lst_src, t_list **lst_dst)
 	node = *lst_src; // pointer to node to move from src to dst
 	*lst_src = node->next; // mv 2nd node to 1st position on src lst
 	ft_lstadd_front(lst_dst, node); //mv node to 1st posistion of dst lst
+	ft_putstr_fd(str, 1);
 	return (1);
 }
 
