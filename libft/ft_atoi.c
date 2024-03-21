@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 18:29:55 by lpalacio          #+#    #+#             */
-/*   Updated: 2022/10/30 22:42:35 by lpalacio         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:21:34 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_atoi(const char *str)
 		i++;
 	if (str[i] == '-')
 		sign = -1;
-	if (str[i] == '-' || str[i] == '+') 
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (ft_isdigit(str[i]))
 	{

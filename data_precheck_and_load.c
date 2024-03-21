@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_and_duplicates.c                              :+:      :+:    :+:   */
+/*   data_precheck_and_load.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:59:36 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/01/02 21:06:36 by lpalacio         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:34:16 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 /* Check if string has valid length and characters to be an integer */
 int	is_valid_str_for_int(char *str)
 {
-	int i;
-	
-	i = 0;
+	int	i;
 
+	i = 0;
 	if (!str)
 		exit(5);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] == '0')
-	{		
-		if (!str[i+1])
+	{
+		if (!str[i + 1])
 			return (1);
 		i++;
 	}
 	if (!str[i] || (ft_strlen(str) - i) > 10)
-		error_and_exit(3);;
+		error_and_exit(3);
 	while (str[i])
 	{
-		if(!ft_isdigit((int)str[i]))
+		if (!ft_isdigit((int)str[i]))
 			error_and_exit(4);
 		i++;
 	}
@@ -42,8 +41,8 @@ int	is_valid_str_for_int(char *str)
 
 t_list	*validate_arg(char **args, t_list **stack_a)
 {
-	int	j;
-	int	**num;
+	int		j;
+	int		**num;
 	t_list	*new_node;
 
 	j = count_rows(args);
@@ -70,9 +69,9 @@ t_list	*validate_arg(char **args, t_list **stack_a)
 
 int	check_and_load(char *argv[], t_list **stack_a)
 {
-	int		 i;
+	int		i;
 	char	**args;
-	
+
 	i = 1;
 	while (argv[i])
 	{
@@ -81,7 +80,7 @@ int	check_and_load(char *argv[], t_list **stack_a)
 			exit (1);
 		validate_arg(args, stack_a);
 		free(args);
-		i++;		
+		i++;
 	}
 	return (0);
 }
@@ -91,7 +90,7 @@ int	*get_max_and_check_dup(t_list *lst, int *max)
 	t_list	*aux2;
 
 	aux2 = lst;
-	while(aux2)
+	while (aux2)
 	{
 		if (((int *)(aux2->content))[position] == unset)
 		{
@@ -101,7 +100,7 @@ int	*get_max_and_check_dup(t_list *lst, int *max)
 				max = aux2->content;
 		}
 		aux2 = aux2->next;
-	}		
+	}
 	return (max);
 }
 
@@ -114,15 +113,14 @@ void	check_duplicated_and_sort(t_list *stack)
 
 	aux = stack;
 	count = ft_lstsize(stack);
-	while(count)
+	while (count)
 	{
 		max = aux->content;
 		if (max[position] == unset)
 		{
-			aux2 = aux->next; 
+			aux2 = aux->next;
 			max = get_max_and_check_dup(aux2, max);
 			max[position] = --count;
-			//count--;
 		}
 		else
 			aux = aux->next;

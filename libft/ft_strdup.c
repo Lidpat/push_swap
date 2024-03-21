@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 21:11:28 by lpalacio          #+#    #+#             */
-/*   Updated: 2022/10/03 21:56:14 by lpalacio         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:20:02 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s1)
 	n = ft_strlen (s1) + 1;
 	str = (char *)malloc (n * sizeof(char));
 	if (str != NULL)
-	{	
+	{
 		check = ft_strlcpy(str, s1, n);
 		if (check >= n)
 		{

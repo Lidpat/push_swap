@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 22:04:12 by lpalacio          #+#    #+#             */
-/*   Updated: 2022/10/03 20:32:16 by lpalacio         ###   ########.fr       */
+/*   Updated: 2024/03/21 22:19:35 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			while (len--)
 				dst_buff[len] = src_buff[len];
 		}
-	}	
+	}
 	return (dst);
 }
