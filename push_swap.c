@@ -42,7 +42,7 @@ void	move_zero_right(t_list **lst_src, t_list **lst_dst, int bit)
 	int		numb;
 	int		bit_value;
 	t_list	*aux;
-	int stack_size;
+	int 	stack_size;
 
 	aux = *lst_src;
 	stack_size = ft_lstsize(aux);
@@ -52,17 +52,10 @@ void	move_zero_right(t_list **lst_src, t_list **lst_dst, int bit)
 		bit_value = (numb >> bit) % 2;
 		if (bit_value == 0)
 			push(lst_src, lst_dst, "pb\n");
-		else //if (stack_size > 0)
+		else
 			rotate(lst_src, "ra\n");
-
-//		ft_putnbr_fd (numb, 1);
-//		write (1, "\t", 1);
-//		ft_putnbr_fd (bit_value, 1);
-//		write (1, "\n", 1);
-		//aux = aux->next;
 		aux = *lst_src; 
 	}
-	
 }
 
 void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
@@ -70,7 +63,7 @@ void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
 	int		numb;
 	int		bit_value;
 	t_list	*aux;
-	int stack_size;
+	int 	stack_size;
 
 	aux = *lst_src;
 	stack_size = ft_lstsize(aux);
@@ -80,26 +73,9 @@ void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
 		bit_value = (numb >> bit) % 2;
 		if (bit_value == 1)
 			push(lst_src, lst_dst, "pa\n");
-		else //if (stack_size > 0)
+		else
 			rotate(lst_src, "rb\n");
-
-//		ft_putnbr_fd (numb, 1);
-//		write (1, "\t", 1);
-//		ft_putnbr_fd (bit_value, 1);
-//		write (1, "\n", 1);
-		//aux = aux->next;
 		aux = *lst_src; 
-	}
-}
-
-void	move_all_b(t_list **lst_src, t_list **lst_dst)
-{
-	int	stack_size;
-
-	stack_size = ft_lstsize(*lst_src);
-	while (stack_size--)
-	{
-		push(lst_src, lst_dst, "pa\n");
 	}
 }
 
@@ -123,7 +99,7 @@ void	radix_sort(t_list *stack_a, int stack_size)
 		}
 		bit++;
 	}
-	move_all_b(&stack_b, &stack_a);
+	push_all_a(&stack_b, &stack_a);
 }
 
 void	sort_3numb(t_list *stack_a)
@@ -168,13 +144,12 @@ void	sort_3numb(t_list *stack_a)
 			ft_putstr_fd("whaat?!?!!", 1); 
 
 	}
-	
 }
 
 int	get_position(int num, t_list *lst)
 {
-	int	i;
-	t_list *aux; 
+	int		i;
+	t_list	*aux; 
 
 	i = 1; 
 	aux = lst; 
@@ -187,97 +162,44 @@ int	get_position(int num, t_list *lst)
 	}
 	return (-1);
 }
-void	sort_5numb(t_list *stack_a)
+
+int	sort_n(t_list *stack_a, t_list *stack_b, int min)
 {
-	t_list	*stack_b;
-	t_list *aux;
-	int		pos_0;
-	int		pos_1; 
+	int	position;
+	int lst_size;
+	int	i;
 
-	stack_b = NULL;
-	aux = stack_a;
-	pos_0 = get_position(0, stack_a);
-	pos_1 = get_position(1, stack_a); 
-/*	ft_putstr_fd("pos 0: ", 1);
-	ft_putnbr_fd(pos_0, 1);
-	write (1, "\n", 1);   
-		ft_putstr_fd("pos 1: ", 1);
-	ft_putnbr_fd(pos_1, 1);
-	write (1, "\n", 1);
-*/
-	if (pos_0 == 1)
+	if (ft_lstsize(stack_a) == 3)
 	{
-		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 == 3 || pos_1 == 4)
-			rotate (&stack_a, "ra\n");
-		if (pos_1 == 4)
-			rotate (&stack_a, "ra\n");
-		if (pos_1 == 5)
-			reverse(&stack_a, "rra\n");
-		push(&stack_a, &stack_b, "pb\n");
-
+		if (!is_sorted(stack_a))
+			sort_3numb (stack_a);
+		push_all_a(&stack_b, &stack_a);
+		return (1);
 	}
-	else if (pos_0 == 2)
+	else 
 	{
-		if(pos_1 == 1)
-			swap(&stack_a, "sa\n");
-		else
-			rotate (&stack_a, "ra\n");
-		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 == 4 || pos_1 == 5)
-			rotate (&stack_a, "ra\n");
-		if (pos_1 == 5)
-			rotate (&stack_a, "ra\n");
-		push(&stack_a, &stack_b, "pb\n");
-	}
-	else if (pos_0 == 3)
-	{
-		if (pos_1 != 1)
-			rotate (&stack_a, "ra\n");
-		if (pos_1 == 4 || pos_1 == 5)
-			rotate (&stack_a, "ra\n");
-		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 ==1 || pos_1 == 5)
-			rotate (&stack_a, "ra\n");
-		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 == 1 || pos_1 == 2)
-			swap(&stack_b, "sb\n");
-		
-	}
-	else if (pos_0 == 4)
-	{
-		if (pos_1 == 1 || pos_1 == 5)
-		{
-			reverse(&stack_a, "rra\n");
-			reverse(&stack_a, "rra\n");
+		position = get_position(min, stack_a); 
+		lst_size = ft_lstsize(stack_a);
+		i = 1;
+		if (position <= (lst_size/2 + lst_size%2))
+		{	
+			while (i < position)
+			{
+				rotate (&stack_a, "ra\n");
+				i++;
+			}
 		}
 		else
-			rotate (&stack_a, "ra\n");
-		if (pos_1 == 3)
-			rotate (&stack_a, "ra\n");
+		{
+			while (lst_size >= position)
+			{
+				reverse(&stack_a, "rra\n");
+				lst_size--;
+			}
+		}
 		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 == 1 || pos_1 == 2)
-			rotate (&stack_a, "ra\n");
-		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 == 2 || pos_1 == 3)
-			swap(&stack_b, "sb\n");
-	}
-	else
-	{
-		reverse(&stack_a, "rra\n");
-		push(&stack_a, &stack_b, "pb\n");
-		if (pos_1 == 2 || pos_1 == 3)
-			rotate (&stack_a, "ra\n");
-		if (pos_1 == 3)
-			rotate (&stack_a, "ra\n");
-		else if (pos_1 == 4)
-			reverse(&stack_a, "rra\n");
-		push(&stack_a, &stack_b, "pb\n");
-
-	}
-	if (!is_sorted(stack_a))
-		sort_3numb (stack_a);
-	move_all_b(&stack_b, &stack_a);
+		return (sort_n(stack_a, stack_b, min+1));
+	}	
 }
 
 int	push_swap (t_list *stack)
@@ -289,13 +211,11 @@ int	push_swap (t_list *stack)
 		swap(&stack, "sa\n"); 
 	else if (stack_size == 3)
 		sort_3numb(stack);
-	else if (stack_size == 5)
-		sort_5numb(stack);
+	else if (stack_size <= 35)
+		sort_n(stack, NULL, 0);
 	else
 		radix_sort(stack, stack_size);
-
 	return (0);
-	
 }
 
 int main (int argc, char *argv[])
@@ -313,7 +233,5 @@ int main (int argc, char *argv[])
 	if (!sort)
 		push_swap(stack);
 	ft_lstclear(&stack, free);
-
-		//move_mapping (*int[] instruction_list)   or print_instructions_list(*int )
 	return (0);
 }

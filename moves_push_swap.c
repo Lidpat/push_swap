@@ -69,3 +69,14 @@ int	reverse(t_list **stack, char *str)
 	ft_putstr_fd(str, 1);
 	return (1);
 }
+
+void	push_all_a(t_list **lst_src, t_list **lst_dst)
+{
+	int	stack_size;
+
+	stack_size = ft_lstsize(*lst_src);
+	while (stack_size--)
+	{
+		push(lst_src, lst_dst, "pa\n");
+	}
+}
