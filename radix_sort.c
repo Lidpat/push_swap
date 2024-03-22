@@ -6,7 +6,7 @@
 /*   By: lpalacio <lpalacio@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 00:58:29 by lpalacio          #+#    #+#             */
-/*   Updated: 2024/03/22 01:15:45 by lpalacio         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:40:53 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	move_one_left(t_list **lst_src, t_list **lst_dst, int bit)
 	}
 }
 
-void	radix_sort(t_list *stack_a, int stack_size)
+void	radix_sort(t_list **stack_a, int stack_size)
 {
 	t_list	*stack_b;
 	int		bit;
@@ -91,13 +91,13 @@ void	radix_sort(t_list *stack_a, int stack_size)
 	while (bit < bit_max)
 	{
 		if (bit == 0)
-			move_zero_right(&stack_a, &stack_b, bit);
+			move_zero_right(stack_a, &stack_b, bit);
 		else
 		{
-			move_one_left(&stack_b, &stack_a, bit);
-			move_zero_right(&stack_a, &stack_b, bit);
+			move_one_left(&stack_b, stack_a, bit);
+			move_zero_right(stack_a, &stack_b, bit);
 		}
 		bit++;
 	}
-	push_all_a(&stack_b, &stack_a);
+	push_all_a(&stack_b, stack_a);
 }

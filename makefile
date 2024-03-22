@@ -13,6 +13,9 @@
 SRCS	= push_swap.c push_swap_utils.c moves_push_swap.c radix_sort.c \
 data_precheck_and_load.c
 
+OBJDIR = bin
+OBJS	= ${SRCS:%.c=$(OBJDIR)/%.o}
+
 NAME = push_swap
 LIBDIR = libft/
 RM = rm -rf
@@ -21,23 +24,27 @@ CFLAGS = -Wall -Wextra -Werror
 CLIBFT = -L ${LIBDIR} -lft
 LIBFT = libft.a
 
+bin/%.o : %.c
+		@mkdir -p ${OBJDIR}
+		$(CC) ${CFLAGS} -c $< -o $@
 
-
-${NAME}: ${SRCS} | ${LIBFT}
-	@$(CC) -g -o ${NAME} ${SRCS} ${CLIBFT} ${CFLAGS} 
+${NAME}: ${OBJS} | ${LIBFT}
+	$(CC) -o ${NAME} ${OBJS} ${CLIBFT} ${CFLAGS} 
 	@echo "push_swap has been compiled"
 
 all: ${NAME}
 
 ${LIBFT}:
-	@cd ${LIBDIR} && $(MAKE)
+	$(MAKE) -C $(LIBDIR)
 
 
 clean: 
-	@${RM} ${NAME}
+	${RM} ${OBJS} $(OBJDIR)
+	$(MAKE) -C $(LIBDIR) clean
 
 fclean: clean
-	@cd ${LIBDIR} && $(MAKE) fclean
+	${RM} ${NAME}
+	$(MAKE) -C $(LIBDIR) fclean
 
 re: fclean all
 

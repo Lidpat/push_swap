@@ -8,3 +8,4 @@ mv_num=$(./push_swap $ARG | wc -l)
 echo $mv_num
 ret=$(./push_swap $ARG | ./checker_Mac $ARG)
 echo $ret
+
