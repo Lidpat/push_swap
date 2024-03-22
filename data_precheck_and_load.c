@@ -39,7 +39,7 @@ int	is_valid_str_for_int(char *str)
 	return (1);
 }
 
-t_list	*validate_arg(char **args, t_list **stack_a)
+int	validate_arg(char **args, t_list **stack_a)
 {
 	int		j;
 	int		**num;
