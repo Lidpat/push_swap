@@ -6,14 +6,11 @@
 /*   By: lpalacio <lpalacio@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:52:48 by lpalacio          #+#    #+#             */
-/*   Updated: 2023/12/23 21:42:28 by lpalacio         ###   ########.fr       */
+/*   Updated: 2024/03/22 01:20:48 by lpalacio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//free malloc 2D   //variadric?
-//
 
 void	error_and_exit(int n)
 {
@@ -27,7 +24,7 @@ int	count_rows(char **args)
 	int	row;
 
 	row = 0;
-	while(args[row])
+	while (args[row])
 		row++;
 	return (row);
 }
@@ -35,15 +32,32 @@ int	count_rows(char **args)
 int	is_sorted(t_list *lst)
 {
 	t_list	*aux;
-	int	num;  
+	int		num;
 
 	aux = lst;
-		while (aux != NULL)
-		{
-			num = ((int *)(aux->content))[position];
-			aux = aux->next;
-			if (aux != NULL && num > ((int *)(aux->content))[position])
-				return (0);
-		}
+	while (aux != NULL)
+	{
+		num = ((int *)(aux->content))[position];
+		aux = aux->next;
+		if (aux != NULL && num > ((int *)(aux->content))[position])
+			return (0);
+	}
 	return (1);
+}
+
+void	rotate_a_ntimes(int times, t_list **stack_a)
+{
+	while (times--)
+	{
+		rotate (stack_a, "ra\n");
+	}
+}
+
+void	reverse_a_ntimes(int times, t_list **stack_a)
+{
+	while (times >= 0)
+	{
+		reverse(stack_a, "rra\n");
+		times--;
+	}
 }

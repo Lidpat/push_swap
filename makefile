@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= push_swap.c push_swap_utils.c moves_push_swap.c data_precheck_and_load.c
+SRCS	= push_swap.c push_swap_utils.c moves_push_swap.c radix_sort.c \
+data_precheck_and_load.c
 
 NAME = push_swap
 LIBDIR = libft/
