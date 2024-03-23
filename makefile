@@ -24,27 +24,26 @@ CFLAGS = -Wall -Wextra -Werror
 CLIBFT = -L ${LIBDIR} -lft
 LIBFT = libft.a
 
-bin/%.o : %.c
-		@mkdir -p ${OBJDIR}
-		$(CC) ${CFLAGS} -c $< -o $@
-
-${NAME}: ${OBJS} | ${LIBFT}
-	$(CC) -o ${NAME} ${OBJS} ${CLIBFT} ${CFLAGS} 
-	@echo "push_swap has been compiled"
-
 all: ${NAME}
 
-${LIBFT}:
-	$(MAKE) -C $(LIBDIR)
+bin/%.o : %.c
+		@mkdir -p ${OBJDIR}
+		@$(CC) ${CFLAGS} -c $< -o $@
 
+${NAME}: ${OBJS} | ${LIBFT}
+	@$(CC) -o ${NAME} ${OBJS} ${CLIBFT} ${CFLAGS} 
+	@echo "push_swap has been compiled"
+
+${LIBFT}:
+	@$(MAKE) -C $(LIBDIR)
 
 clean: 
-	${RM} ${OBJS} $(OBJDIR)
-	$(MAKE) -C $(LIBDIR) clean
+	@${RM} ${OBJS} $(OBJDIR)
+	@$(MAKE) -C $(LIBDIR) clean
 
 fclean: clean
-	${RM} ${NAME}
-	$(MAKE) -C $(LIBDIR) fclean
+	@${RM} ${NAME}
+	@$(MAKE) -C $(LIBDIR) fclean
 
 re: fclean all
 
